@@ -8,6 +8,7 @@ fun main(args: Array<String>) {
         init {
             println("object init")
         }
+
         override fun test() {
             println("test")
         }
@@ -57,3 +58,45 @@ object SingleInstance {
     }
 
 }
+
+
+class CompanionClass {
+    companion object {
+        const val TEST = "Test"
+        fun test() {
+
+        }
+    }
+}
+
+class CompanionClass2 {
+    companion object Tst {
+        const val TEST = "Test"
+        fun test() {
+
+        }
+    }
+}
+
+class CompanionTestClass {
+    fun main(args: Array<String>) {
+//        println(CompanionClass.TEST)
+//        CompanionClass.test()
+        t(object : TestInterface {
+            override fun test() {
+                println("hh")
+            }
+
+        })
+    }
+
+    fun t(i: TestInterface) {
+        i.test()
+    }
+}
+
+interface TestInterface {
+    fun test()
+}
+
+
