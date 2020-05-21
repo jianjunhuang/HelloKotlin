@@ -16,6 +16,13 @@ fun main(args: Array<String>) {
             .map { it + 1 }
             .filter { it % 2 == 0 }
             .toList()
-}
 
+    testLambda {
+        it == 1
+    }
+}
+// lambda 就是一个对象
+fun testLambda(test: (Int) -> Boolean): Boolean {
+    return test.invoke(1)
+}
 
