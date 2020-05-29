@@ -20,9 +20,54 @@ fun main(args: Array<String>) {
     testLambda {
         it == 1
     }
+    val array = ArrayList<Boolean>(1000000000)
+    lookFor4(array)
 }
+
 // lambda 就是一个对象
 fun testLambda(test: (Int) -> Boolean): Boolean {
     return test.invoke(1)
 }
 
+fun lookFor(list: List<Boolean>) {
+    list.forEach {
+        if (it) {
+            return
+        }
+    }
+}
+
+fun lookFor2(list: List<Boolean>) {
+    list.forEach {
+        println("return for each $it")
+        if (!it) {
+            return@forEach
+        }
+        println("return for each $it")
+    }
+    println("return")
+}
+
+fun lookFor3(list: List<Boolean>) {
+    for (l in list) {
+        if (l) {
+            println("return for each $l")
+            break
+        }
+        println("return")
+    }
+    println("return")
+}
+
+fun lookFor4(list: List<Boolean>) {
+    list.forEach(fun(b) {
+        println("return $b")
+        if (b) {
+            println("return $b")
+            return
+        }
+        println("return $b")
+    })
+
+    println("return")
+}
